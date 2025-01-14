@@ -1,0 +1,31 @@
+User
+    first_name
+    last_name
+    email_address
+    role -> keep it siimple for now
+    msisdn
+    superadmin, user, admin
+Sport 
+    name
+Games
+    name
+    sport_id
+    odds
+    expires_at
+Betting
+    usser_id
+    game_id
+    amount
+    won
+    result->won/lost
+
+Pages Sign in, Registration, View Sports games, place bets, cancel bets, view history, view wins and losses
+
+Super admin
+Configure sport games, grant admin access to user, revoke admin access
+
+Admin
+view user, with games, soft delete user, view profit made from game losses
+
+
+Email
