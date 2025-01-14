@@ -6,4 +6,8 @@ defmodule BettingSystemWeb.PageController do
     # so skip the default app layout.
     render(conn, :home, layout: false)
   end
+
+  def hello(conn, _params) do
+    render(conn, :hello, layout: false)
+  end
 end

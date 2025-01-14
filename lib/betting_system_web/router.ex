@@ -18,6 +18,9 @@ defmodule BettingSystemWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
+    get "/login", AuthController, :login
+    get "/register", AuthController, :register
+
   end
 
   # Other scopes may use custom stacks.
