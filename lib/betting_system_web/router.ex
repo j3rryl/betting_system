@@ -20,6 +20,8 @@ defmodule BettingSystemWeb.Router do
     get "/", PageController, :home
     get "/login", AuthController, :login
     get "/register", AuthController, :register
+    get "/history", HistoryController, :index
+    resources "/games", BettingController
 
   end
 
