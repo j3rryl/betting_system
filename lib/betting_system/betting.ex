@@ -7,7 +7,7 @@ defmodule BettingSystem.Betting do
     field :won, :boolean, default: false
     field :result, :string, default: "lost"
 
-    belongs_to :user, BettingSystem.User
+    belongs_to :user, BettingSystem.Accounts.User
     belongs_to :game, BettingSystem.Game
 
     timestamps()

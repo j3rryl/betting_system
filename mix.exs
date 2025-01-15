@@ -32,8 +32,8 @@ defmodule BettingSystem.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix, "~> 1.7.18"},
-      {:phoenix_ecto, "~> 4.5"},
+      {:pbkdf2_elixir, "~> 2.0"},
+  {:phoenix_ecto, "~> 4.5"},
       {:ecto_sql, "~> 3.10"},
       {:myxql, ">= 0.0.0"},
       {:phoenix_html, "~> 4.1"},

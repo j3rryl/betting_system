@@ -4,7 +4,9 @@
 
   schema "games" do
     field :name, :string
-    field :odds, :float
+    field :win_odds, :float
+    field :loss_odds, :float
+    field :draw_odds, :float
     field :expires_at, :utc_datetime
 
     belongs_to :sport, BettingSystem.Sport
