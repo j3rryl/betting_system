@@ -41,3 +41,7 @@ view user, with games, soft delete user, view profit made from game losses
 Email
 
 Dev dashboard
+
+Please feel free to have unit tests within the implementation.
+In addition, demonstrate the use of priority queueing mechanism using any available elixir binding.
+If using a relational database, demonstrate a deep understanding of relations, indexes, constraints within the different schemas.
