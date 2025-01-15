@@ -65,7 +65,7 @@ defmodule BettingSystemWeb.Router do
     pipe_through [:browser, :require_authenticated_user]
 
     get "/history", HistoryController, :index
-    resources "/games", BettingController
+    resources "/games", GameController
     get "/users/settings", UserSettingsController, :edit
     put "/users/settings", UserSettingsController, :update
     get "/users/settings/confirm_email/:token", UserSettingsController, :confirm_email

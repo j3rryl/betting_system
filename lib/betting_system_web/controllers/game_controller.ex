@@ -1,4 +1,4 @@
-defmodule BettingSystemWeb.BettingController do
+defmodule BettingSystemWeb.GameController do
   alias BettingSystem.Game
   alias BettingSystem.Repo
   use BettingSystemWeb, :controller
@@ -12,9 +12,10 @@ defmodule BettingSystemWeb.BettingController do
     |> render(:index, games: games)
   end
 
-  def show(conn, _params) do
+  def show(conn, %{"id" => id}) do
+    game = Repo.get(Game, id)
     conn
     |> put_layout(html: :admin)
-    |> render(:show)
+    |> render(:show, game: game)
   end
 end
