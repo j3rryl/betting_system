@@ -38,7 +38,7 @@
             Games
           </.link>
         </li>
-        <%= if @current_user.role == "admin" do %>
+        <%= if @current_user.role == "admin" || @current_user.role == "superuser" do %>
         <li>
           <.link
             href={~p"/auths"}

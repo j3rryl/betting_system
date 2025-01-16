@@ -64,6 +64,11 @@ defmodule BettingSystemWeb.AuthController do
     end
   end
   def create(conn, %{"user" => user_params}) do
+    options = [
+      {"User", "user"},  # For 0, label it as "X"
+      {"Admin", "admin"},  # For 1, label it as "1"
+      {"Superuser", "superuser"}   # For 2, label it as "2"
+    ]
     case Accounts.register_user(user_params) do
       {:ok, user} ->
         {:ok, _} =
@@ -77,7 +82,7 @@ defmodule BettingSystemWeb.AuthController do
         |> redirect(to: "/auths")
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, :create, changeset: changeset)
+        render(conn, :create, changeset: changeset, options: options)
     end
   end
 end
