@@ -2,6 +2,10 @@
 
 <div class="relative overflow-x-auto mx-12 my-5" >
 <div class="block p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+        <%= if @current_user.role=="admin" || @current_user.role=="superadmin" do %>
+        <p class="font-bold">All Bets</p>
+        <% end %>
+
     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
@@ -50,7 +54,14 @@
 
                     </td>
                 </tr>
+        
         <% end %>
+        <%= if @current_user.role=="admin" || @current_user.role=="superadmin" do %>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th>Profits from losses: <%= Float.to_string(@total_lost, decimals: 2) %></th>
+        <%end %>
 
         </tbody>
     </table>

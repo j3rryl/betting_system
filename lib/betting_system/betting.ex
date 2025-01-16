@@ -39,5 +39,11 @@ defmodule BettingSystem.Betting do
       preload: [:game]  # Preloading the associated game details
     )
   end
+  def get_bettings() do
+    Repo.all(
+      from b in BettingSystem.Betting,
+      preload: [:game]  # Preloading the associated game details
+    )
+  end
 
 end
