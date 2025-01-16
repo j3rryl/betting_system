@@ -28,6 +28,11 @@
                   </p>
                 <% end %>
               <p>Amount: <%= @existing_bet.amount %></p>
+              <.simple_form :let={f} for={@changeset} action={~p"/bettings/#{@existing_bet.id}"} method="delete">
+              <:actions>
+                <.button phx-disable-with="Cancel bet..." class="w-full">Cancel bet</.button>
+              </:actions>
+              </.simple_form>
             </div>
           <% else %>
           <.simple_form :let={f} for={@changeset} action={~p"/bettings"}>
@@ -41,8 +46,8 @@
           
           <div class="grid grid-cols-3 gap-2 mt-3">
             <.input field={f[:placed_bet]} type="radio" value="1" label={"1 (#{@game.win_odds})"} required />
-            <.input field={f[:placed_bet]} type="radio" value="0" label={"X (#{@game.loss_odds})"} required />
-            <.input field={f[:placed_bet]} type="radio" value="2" label={"2 (#{@game.draw_odds})"} required />
+            <.input field={f[:placed_bet]} type="radio" value="0" label={"X (#{@game.draw_odds})"} required />
+            <.input field={f[:placed_bet]} type="radio" value="2" label={"2 (#{@game.loss_odds})"} required />
           </div>
 
           <:actions>
