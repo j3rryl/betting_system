@@ -8,53 +8,50 @@
             <%= @game.name %>
           </h1>
 
-          <form>
-            <div class="grid grid-cols-3 gap-2 mt-3">
-                <div>
-                  <input type="radio" id="win" name="odds_selected" value="win" hidden>
-                  <label for="win">
-                    1 (<%= @game.win_odds %>)
-                  </label>
-                </div>
-                <div>
-                  <input type="radio" id="draw" name="odds_selected" value="draw" hidden>
-                  <label for="draw">
-                    X (<%= @game.draw_odds %>)
-                  </label>
-                </div>
-                <div>
-                  <input type="radio" id="loss" name="odds_selected" value="loss" hidden>
-                  <label for="loss">
-                    2 (<%= @game.loss_odds %>)
-                  </label>
-                </div>
-            </div>
-            <div class="sm:gap-4 sm:items-center sm:flex my-4">
-              <div>
-                <input type="number" id="amount" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Amount" required min="1" />
-              </div>
-                <button
-                  href="#"
-                  title=""
-                  class="flex items-center justify-center py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-                  role="button"
-                >
-                  Place bet
-                </button>
-            </div>
-          </form>
-          <hr class="my-6 md:my-3 border-gray-200 dark:border-gray-800" />
-          <p class="mb-6 text-gray-500 dark:text-gray-400">
-            Studio quality three mic array for crystal clear calls and voice
-            recordings. Six-speaker sound system for a remarkably robust and
-            high-quality audio experience. Up to 256GB of ultrafast SSD storage.
-          </p>
 
-          <p class="text-gray-500 dark:text-gray-400">
-            Two Thunderbolt USB 4 ports and up to two USB 3 ports. Ultrafast
-            Wi-Fi 6 and Bluetooth 5.0 wireless. Color matched Magic Mouse with
-            Magic Keyboard or Magic Keyboard with Touch ID.
-          </p>
+          <%= if @existing_bet do %>
+            <div class="p-4 bg-green-100 rounded-lg">
+              <p>You have already placed a bet on this game!</p>
+                <%= if @existing_bet.placed_bet == 1 do %>
+                  <p>
+                    1 (<%= @game.win_odds %> )
+                  </p>
+                <% end %>
+                <%= if @existing_bet.placed_bet == 0 do %>
+                  <p>
+                    X ( <%= @game.draw_odds %> )
+                  </p>
+                <% end %>
+                <%= if @existing_bet.placed_bet == 2 do %>
+                  <p>
+                    2 (<%= @game.loss_odds %> )
+                  </p>
+                <% end %>
+              <p>Amount: <%= @existing_bet.amount %></p>
+            </div>
+          <% else %>
+          <.simple_form :let={f} for={@changeset} action={~p"/bettings"}>
+          <%!-- <.error :if={@changeset.action == :insert}>
+            Oops, something went wrong! Please check the errors below.
+          </.error> --%>
+
+          <.input field={f[:amount]} type="number" min="1" label="Amount" required />
+          <.input field={f[:user_id]} value={"#{@current_user.id}"} required type="hidden" />
+          <.input field={f[:game_id]} value={"#{@game.id}"} required type="hidden" />
+          
+          <div class="grid grid-cols-3 gap-2 mt-3">
+            <.input field={f[:placed_bet]} type="radio" value="1" label={"1 (#{@game.win_odds})"} required />
+            <.input field={f[:placed_bet]} type="radio" value="0" label={"X (#{@game.loss_odds})"} required />
+            <.input field={f[:placed_bet]} type="radio" value="2" label={"2 (#{@game.draw_odds})"} required />
+          </div>
+
+          <:actions>
+            <.button phx-disable-with="Place bet..." class="w-full">Place bet</.button>
+          </:actions>
+        </.simple_form>
+        <% end %>
+          <hr class="my-6 md:my-3 border-gray-200 dark:border-gray-800" />
+          
         </div>
       </div>
     </div>

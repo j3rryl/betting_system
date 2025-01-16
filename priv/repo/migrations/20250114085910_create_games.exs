@@ -8,6 +8,7 @@ defmodule BettingSystem.Repo.Migrations.CreateGames do
       add :win_odds, :float, null: false
       add :loss_odds, :float, null: false
       add :draw_odds, :float, null: false
+      add :result, :integer, default: 0
       add :expires_at, :utc_datetime, null: false
 
       timestamps()

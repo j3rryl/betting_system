@@ -7,6 +7,7 @@
     field :win_odds, :float
     field :loss_odds, :float
     field :draw_odds, :float
+    field :result, :integer
     field :expires_at, :utc_datetime
 
     belongs_to :sport, BettingSystem.Sport

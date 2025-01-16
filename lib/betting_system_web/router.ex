@@ -66,6 +66,7 @@ defmodule BettingSystemWeb.Router do
 
     get "/history", HistoryController, :index
     resources "/games", GameController
+    resources "/bettings", BettingController
     get "/users/settings", UserSettingsController, :edit
     put "/users/settings", UserSettingsController, :update
     get "/users/settings/confirm_email/:token", UserSettingsController, :confirm_email
