@@ -63,6 +63,9 @@ defmodule BettingSystemWeb.GameController do
     end
   end
   def create(conn, %{"game" => game_params}) do
+    sports = Repo.all(Sport)
+    options = Enum.map(sports, fn sport -> {sport.name, sport.id} end)
+
     case Game.create_game(game_params) do
       {:ok, _game} ->
         conn
@@ -70,7 +73,7 @@ defmodule BettingSystemWeb.GameController do
         |> redirect(to: "/games")
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, :new, changeset: changeset)
+        render(conn, :create, changeset: changeset, options: options)
     end
   end
 end
