@@ -50,7 +50,7 @@ defmodule BettingSystem.Accounts.User do
   end
   def changeset(game, attrs) do
     game
-    |> cast(attrs, [:email, :first_name, :last_name, :role])
+    |> cast(attrs, [:email, :first_name, :last_name, :role, :deleted_at])
     |> validate_required([:email, :first_name, :last_name, :role])
   end
 

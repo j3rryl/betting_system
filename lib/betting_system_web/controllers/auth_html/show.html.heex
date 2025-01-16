@@ -9,6 +9,18 @@
           <p>Email: <%= @user.email %></p>
           <p>Role: <%= @user.role %></p>
 
+        <.simple_form :let={f} for={@changeset} action={~p"/auths/#{@user.id}"} method="delete">
+          
+          <:actions>
+            <.button phx-disable-with="Delete user..." class="w-full">
+            <%= if @user.deleted_at do %>
+            Restore User
+            <% else %>
+            Delete User
+            <% end %>
+            </.button>
+          </:actions>
+        </.simple_form>
         <p class="font-bold my-3 !underline">Bets</p>
 
           <div class="relative overflow-x-auto ">

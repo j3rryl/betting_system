@@ -85,4 +85,28 @@ defmodule BettingSystemWeb.AuthController do
         render(conn, :create, changeset: changeset, options: options)
     end
   end
+
+  def delete(conn, %{"id" => user_id}) do
+    user = Repo.get(User, user_id)
+
+    case user do
+      nil ->
+        conn
+        |> put_flash(:error, "User not found.")
+        |> redirect(to: "/auths")
+
+      user ->
+        # Check if deleted_at is already set
+        deleted_at = if user.deleted_at, do: nil, else: NaiveDateTime.utc_now()
+
+        # Update the user with the new deleted_at value
+        user
+        |> User.changeset(%{deleted_at: deleted_at})
+        |> Repo.update()
+
+        conn
+        |> put_flash(:info, "User status successfully updated.")
+        |> redirect(to: "/auths")
+    end
+  end
 end
