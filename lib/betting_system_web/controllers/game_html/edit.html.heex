@@ -3,9 +3,9 @@
       <div class="lg:grid lg:grid-cols-2 lg:gap-8 xl:gap-16">
         <div class="mt-6 sm:mt-8 lg:mt-0">
 
-          <.simple_form :let={f} for={@changeset} action={Routes.game_path(@conn, :update, @game.id)} method="post">
-          <.input field={f[:_method]} type="hidden" label="Name" value="put" />
-
+          <.simple_form :let={f} for={@changeset} action={~p"/games/#{@game.id}"} >
+          <input name="_method" type="hidden" value="patch" />
+          <%!-- <input name="game_id" type="hidden" value={@game.id} /> --%>
           <%!-- <.error :if={@changeset.action == :insert}>
             Oops, something went wrong! Please check the errors below.
           </.error> --%>
@@ -14,7 +14,7 @@
           <.input field={f[:win_odds]} type="number" step="1" value={@game.win_odds} label="Win Odds" required />
           <.input field={f[:draw_odds]} type="number" step="1" value={@game.draw_odds} label="Draw Odds" required />
           <.input field={f[:loss_odds]} type="number" step="1" value={@game.loss_odds} label="Loss Odds" required />
-          <.input field={f[:sport_id]} type="select" label="Result" value={@game.result} options={@results} required />
+          <.input field={f[:result]} type="select" label="Result" value={@game.result} options={@results} required />
           <.input field={f[:sport_id]} type="select" label="Sport" value={@game.sport_id} options={@options} required />
 
           <.input field={f[:expires_at]} type="datetime-local" value={@game.expires_at} label="Expires At" required />

@@ -1,0 +1,23 @@
+<section class="py-2 bg-white md:py-16 dark:bg-gray-900 antialiased">
+    <div class="max-w-screen-xl px-4 mx-auto 2xl:px-0">
+      <div class="lg:grid lg:grid-cols-2 lg:gap-8 xl:gap-16">
+        <div class="mt-6 sm:mt-8 lg:mt-0">
+
+          <.simple_form :let={f} for={@changeset} action={~p"/sports/#{@sport.id}"} >
+          <input name="_method" type="hidden" value="patch" />
+
+
+          <.input field={f[:name]} type="text" label="Name" value={@sport.name} required />
+
+
+          
+          <:actions>
+            <.button phx-disable-with="Add game..." class="w-full">Update sport</.button>
+          </:actions>
+        </.simple_form>
+          <hr class="my-6 md:my-3 border-gray-200 dark:border-gray-800" />
+          
+        </div>
+      </div>
+    </div>
+  </section>

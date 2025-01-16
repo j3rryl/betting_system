@@ -36,7 +36,7 @@ defmodule BettingSystemWeb.GameController do
 
   def edit(conn, %{"id" => id}) do
     game = Repo.get(Game, id)
-    changeset = BettingSystem.Betting.changeset(%BettingSystem.Betting{}, %{})
+    changeset = BettingSystem.Game.changeset(%BettingSystem.Game{}, %{})
 
     results = [
       {"X", "0"},  # For 0, label it as "X"
@@ -50,6 +50,18 @@ defmodule BettingSystemWeb.GameController do
     |> render(:edit, game: game, changeset: changeset, options: options, results: results)
   end
 
+  def update(conn, %{"id" => id, "game" => game_params}) do
+    game = Repo.get!(Game, id)
+    case Game.changeset(game, game_params) |> Repo.update() do
+      {:ok, _game} ->
+        conn
+        |> put_flash(:info, "Game updated successfully!")
+        |> redirect(to: "/games")
+
+        {:error, %Ecto.Changeset{} = changeset} ->
+          render(conn, :new, changeset: changeset)
+    end
+  end
   def create(conn, %{"game" => game_params}) do
     case Game.create_game(game_params) do
       {:ok, _game} ->

@@ -26,7 +26,7 @@
                         <%= betting.game.name %>
                     </th>
                     <td class="px-6 py-4">
-                         <%= betting.amount %>
+                         <%= Float.to_string(betting.amount, decimals: 2) %>
                     </td>
                     <td class="px-6 py-4">
                          <%= betting.game.result %>
@@ -44,7 +44,7 @@
                             <%= "No valid result" %>
                         <% end %>
                     <% else %>
-                        0
+                        Bet Lost
                     <% end %>
 
                     </td>

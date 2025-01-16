@@ -19,8 +19,8 @@
 
   def changeset(game, attrs) do
     game
-    |> cast(attrs, [:name, :sport_id, :win_odds, :draw_odds, :loss_odds, :expires_at])
-    |> validate_required([:name, :sport_id, :win_odds, :draw_odds, :loss_odds, :expires_at])
+    |> cast(attrs, [:name, :sport_id, :win_odds, :draw_odds, :loss_odds, :result, :expires_at])
+    |> validate_required([:name, :sport_id, :win_odds, :draw_odds, :loss_odds, :result, :expires_at])
     |> assoc_constraint(:sport)
   end
   def create_game(attrs \\ %{}) do
