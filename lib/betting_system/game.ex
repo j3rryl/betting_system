@@ -1,4 +1,5 @@
   defmodule BettingSystem.Game do
+    alias BettingSystem.Repo
   use Ecto.Schema
   import Ecto.Changeset
 
@@ -18,8 +19,13 @@
 
   def changeset(game, attrs) do
     game
-    |> cast(attrs, [:name, :sport_id, :odds, :expires_at])
-    |> validate_required([:name, :sport_id, :odds, :expires_at])
+    |> cast(attrs, [:name, :sport_id, :win_odds, :draw_odds, :loss_odds, :expires_at])
+    |> validate_required([:name, :sport_id, :win_odds, :draw_odds, :loss_odds, :expires_at])
     |> assoc_constraint(:sport)
+  end
+  def create_game(attrs \\ %{}) do
+    %BettingSystem.Game{}
+    |> BettingSystem.Game.changeset(attrs)
+    |> Repo.insert()
   end
 end

@@ -1,0 +1,29 @@
+<section class="py-2 bg-white md:py-16 dark:bg-gray-900 antialiased">
+    <div class="max-w-screen-xl px-4 mx-auto 2xl:px-0">
+      <div class="lg:grid lg:grid-cols-2 lg:gap-8 xl:gap-16">
+        <div class="mt-6 sm:mt-8 lg:mt-0">
+
+          <.simple_form :let={f} for={@changeset} action={~p"/games"}>
+          <%!-- <.error :if={@changeset.action == :insert}>
+            Oops, something went wrong! Please check the errors below.
+          </.error> --%>
+
+          <.input field={f[:name]} type="text" label="Name" required />
+          <.input field={f[:win_odds]} type="number" step="1" label="Win Odds" required />
+          <.input field={f[:draw_odds]} type="number" step="1" label="Draw Odds" required />
+          <.input field={f[:loss_odds]} type="number" step="1" label="Loss Odds" required />
+          <.input field={f[:sport_id]} type="select" label="Sport" options={@options} required />
+
+          <.input field={f[:expires_at]} type="datetime-local" label="Expires At" required />
+
+          
+          <:actions>
+            <.button phx-disable-with="Add game..." class="w-full">Add game</.button>
+          </:actions>
+        </.simple_form>
+          <hr class="my-6 md:my-3 border-gray-200 dark:border-gray-800" />
+          
+        </div>
+      </div>
+    </div>
+  </section>
