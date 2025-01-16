@@ -65,14 +65,19 @@ defmodule BettingSystemWeb.Router do
     pipe_through [:browser, :require_authenticated_user]
 
     get "/history", HistoryController, :index
-    resources "/games", GameController
-    resources "/sports", SportController
-    resources "/auths", AuthController
+    resources "/games", GameController, except: [:edit]
     # post "/games/:id", GameController, :update
     resources "/bettings", BettingController
     get "/users/settings", UserSettingsController, :edit
     put "/users/settings", UserSettingsController, :update
     get "/users/settings/confirm_email/:token", UserSettingsController, :confirm_email
+  end
+  scope "/", BettingSystemWeb do
+    pipe_through [:browser, :require_authenticated_user, :require_admin_user]
+
+    resources "/games", GameController, only: [:edit]
+    resources "/sports", SportController
+    resources "/auths", AuthController
   end
 
   scope "/", BettingSystemWeb do

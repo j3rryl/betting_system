@@ -212,6 +212,27 @@ defmodule BettingSystemWeb.UserAuth do
       |> halt()
     end
   end
+  def require_admin_user(conn, _opts) do
+
+    if conn.assigns[:current_user] do
+      user = conn.assigns[:current_user]
+      if user.role == "admin" || user.role=="superadmin" do
+        conn
+        else
+        conn
+        |> put_flash(:error, "You must be an admin to access this page.")
+        |> maybe_store_return_to()
+        |> redirect(to: ~p"/users/log_in")
+        |> halt()
+      end
+    else
+      conn
+      |> put_flash(:error, "You must log in to access this page.")
+      |> maybe_store_return_to()
+      |> redirect(to: ~p"/users/log_in")
+      |> halt()
+    end
+  end
 
   defp put_token_in_session(conn, token) do
     conn
