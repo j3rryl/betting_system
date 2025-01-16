@@ -28,6 +28,18 @@
                   </p>
                 <% end %>
               <p>Amount: <%= Float.to_string(@existing_bet.amount, decimals: 2) %></p>
+              <p>Possible Winnings: 
+                <%= case @existing_bet.placed_bet do %>
+                    <% 1 -> %>  <!-- If result is 1, use win_odds -->
+                    <%= Float.to_string(@existing_bet.amount * @game.win_odds, decimals: 2) %>
+                    <% 0 -> %>  <!-- If result is 0, use draw_odds -->
+                    <%= Float.to_string(@existing_bet.amount * @game.draw_odds, decimals: 2) %>
+                    <% 2 -> %>  <!-- If result is 2, use lose_odds (example for another case) -->
+                    <%= Float.to_string(@existing_bet.amount * @game.loss_odds, decimals: 2) %>
+                    <% _ -> %>  <!-- Default case, for any other result values -->
+                    <%= "No valid result" %>
+                <% end %>
+                </p>
               <.simple_form :let={f} for={@changeset} action={~p"/bettings/#{@existing_bet.id}"} method="delete">
               <:actions>
                 <.button phx-disable-with="Cancel bet..." class="w-full">Cancel bet</.button>

@@ -4,5 +4,5 @@ defmodule BettingSystemWeb.AuthHTML do
   """
   use BettingSystemWeb, :html
 
-  embed_templates "auth/*"
+  embed_templates "auth_html/*"
 end

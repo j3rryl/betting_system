@@ -1,6 +1,8 @@
-<section class="py-2 bg-white md:py-16 dark:bg-gray-900 antialiased">
+<section class=" bg-white md:py-16 dark:bg-gray-900 antialiased">
     <div class="max-w-screen-xl px-4 mx-auto 2xl:px-0">
       <div class="lg:grid lg:grid-cols-2 lg:gap-8 xl:gap-16">
+<div class="!mx-6 p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+
         <div class="mt-6 sm:mt-8 lg:mt-0">
 
           <.simple_form :let={f} for={@changeset} action={~p"/games"}>
@@ -14,7 +16,7 @@
           <.input field={f[:loss_odds]} type="number" step="1" label="Loss Odds" required />
           <.input field={f[:sport_id]} type="select" label="Sport" options={@options} required />
 
-          <.input field={f[:expires_at]} type="datetime-local" label="Expires At" required />
+          <.input field={f[:expires_at]} type="datetime-local" label="Starts At" required />
 
           
           <:actions>
@@ -23,6 +25,7 @@
         </.simple_form>
           <hr class="my-6 md:my-3 border-gray-200 dark:border-gray-800" />
           
+        </div>
         </div>
       </div>
     </div>

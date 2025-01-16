@@ -1,7 +1,15 @@
+<section class="py-2 bg-white md:py-16 dark:bg-gray-900 antialiased">
+    <div class="max-w-screen-xl px-4 mx-auto 2xl:px-0">
+      <div class="lg:grid lg:grid-cols-2 lg:gap-8 xl:gap-16">
+        <div class="mt-6 sm:mt-8 lg:mt-0">
 
+          <p><%= @user.first_name %> <%= @user.last_name %></p>
+          <p>Email: <%= @user.email %></p>
+          <p>Role: <%= @user.role %></p>
 
-<div class="relative overflow-x-auto mx-12 my-5" >
-<div class="block p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+        <p class="font-bold my-3 !underline">Bets</p>
+
+          <div class="relative overflow-x-auto ">
     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
@@ -22,7 +30,7 @@
         <tbody>
         <%= for betting <- @bettings do %>
 
-            <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         <%= betting.game.name %>
                     </th>
@@ -55,4 +63,10 @@
         </tbody>
     </table>
 </div>
-</div>
+
+          <hr class="my-6 md:my-3 border-gray-200 dark:border-gray-800" />
+          
+        </div>
+      </div>
+    </div>
+  </section>

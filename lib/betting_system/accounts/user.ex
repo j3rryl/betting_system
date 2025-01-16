@@ -44,9 +44,14 @@ defmodule BettingSystem.Accounts.User do
   """
   def registration_changeset(user, attrs, opts \\ []) do
     user
-    |> cast(attrs, [:email, :password])
+    |> cast(attrs, [:email, :password, :first_name, :last_name, :role])
     |> validate_email(opts)
     |> validate_password(opts)
+  end
+  def changeset(game, attrs) do
+    game
+    |> cast(attrs, [:email, :first_name, :last_name, :role])
+    |> validate_required([:email, :first_name, :last_name, :role])
   end
 
   defp validate_email(changeset, opts) do

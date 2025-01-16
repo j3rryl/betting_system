@@ -1,0 +1,29 @@
+<section class="bg-white md:py-16 dark:bg-gray-900 antialiased">
+    <div class="max-w-screen-xl px-4 mx-auto 2xl:px-0">
+      <div class="lg:grid lg:grid-cols-2 lg:gap-8 xl:gap-16">
+<div class="!mx-6 p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+
+        <div class="mt-6 sm:mt-8 lg:mt-0">
+
+          <.simple_form :let={f} for={@changeset} action={~p"/auths/#{@user.id}"} >
+          <input name="_method" type="hidden" value="patch" />
+
+
+          <.input field={f[:first_name]} type="text" value={@user.first_name} label="First Name" required />
+          <.input field={f[:last_name]} type="text" value={@user.last_name} label="Last Name" required />
+          <.input field={f[:role]} type="select" value={@user.role} label="Result" options={@results} required />
+
+          <.input field={f[:email]} type="email" value={@user.email} label="Email" required />
+          <.input field={f[:password]} type="password" label="Password" required />
+          
+          <:actions>
+            <.button phx-disable-with="Add user..." class="w-full">Update user</.button>
+          </:actions>
+        </.simple_form>
+          <hr class="my-6 md:my-3 border-gray-200 dark:border-gray-800" />
+          
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
